@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('h.png.jpg');
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            color: white;
+        }
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        input[type="text"], input[type="number"], input[type="date"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        #paymentSuccessMessage {
+            color: green;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Payment Form</h2>
+    <img src="scanner.png.jpeg" alt="Scanner Picture" style="width: 200px; height: auto; margin: 20px auto; display: block;">
+    <form id="paymentForm">
+        <label for="cardNumber">Card Number:</label>
+        <input type="text" id="cardNumber" name="cardNumber" required pattern="[0-9]{13,16}">
+        
+        <label for="expiryDate">Expiration Date:</label>
+        <input type="date" id="expiryDate" name="expiryDate" required>
+        
+        <label for="cardholderName">Cardholder's Name:</label>
+        <input type="text" id="cardholderName" name="cardholderName" required>
+        
+        <!-- Remove the anchor tag around the submit button -->
+        <input type="submit" value="Pay Now">
+    </form>
+
+    <!-- Add JavaScript to handle form submission and display payment success message -->
+    <div id="paymentSuccessMessage" style="display: none;">Payment successfully done</div>
+    <script>
+        document.getElementById("paymentForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // Here, you would typically handle payment processing
+            // For demonstration purposes, let's simulate a successful payment
+            // by showing the success message after a brief delay
+            setTimeout(function() {
+                document.getElementById("paymentSuccessMessage").style.display = "block";
+            }, 2000); // 2000 milliseconds = 2 seconds (adjust as needed)
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Management Sign In</title>
+    <style>
+        body {
+            background-image: url('h.png.jpg');
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"],
+        input[type="password"],
+        input[type="tel"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none; /* Remove underline */
+            display: block; /* Make it a block element to occupy full width */
+            text-align: center; /* Center text */
+        }
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        /* Style for error messages */
+        input:invalid {
+            border-color: red;
+        }
+        input:invalid:focus {
+            outline: none;
+        }
+        input:invalid::placeholder {
+            color: red;
+        }
+        /* Style for success message */
+        #successMessage {
+            text-align: center;
+            color: green;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Hotel Management Sign In</h2>
+        <form id="signInForm">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required title="Please enter a valid username">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required title="Please enter a valid password">
+            <label for="mobile">Mobile Number:</label>
+            <input type="tel" id="mobile" name="mobile" pattern="[0-9]{10}" required title="Please enter a valid 10-digit mobile number">
+            <label for="aadhar">Aadhar Card Number:</label>
+            <input type="text" id="aadhar" name="aadhar" pattern="[0-9]{12}" required title="Please enter a valid 12-digit Aadhar Card number">
+            <!-- Change the button type to submit -->
+            <button type="submit" id="signInButton"><a href="home.html">SIGN IN </a></button>
+        </form>
+        <div id="successMessage"></div>
+    </div>
+
+    <script>
+        document.getElementById("signInForm").addEventListener("submit", function(event) {
+            // Prevent the form from submitting
+            event.preventDefault();
+            // Check if the form is valid
+            if (document.getElementById("signInForm").checkValidity()) {
+                // If valid, display success message
+                document.getElementById("successMessage").textContent = "Successfully signed in";
+            } else {
+                // If not valid, clear any existing success message
+                document.getElementById("successMessage").textContent = "";
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Room Booking</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('h.png.jpg'); /* Replace 'your-background-image.jpg' with the path to your background image */
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            color: white;
+        }
+        .form-container {
+            max-width: 400px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        form {
+            width: 100%;
+        }
+        input[type="text"], input[type="email"], select, input[type="date"] {
+            width: calc(100% - 20px); /* Adjust width to match input fields */
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .book-and-pay {
+            width: calc(100% - 20px); /* Adjust width to match input fields */
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .book-and-pay:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h2>Hotel Room Booking</h2>
+    <div class="form-container">
+        <form id="bookingForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            
+            <label for="roomType">Room Type:</label>
+            <select id="roomType" name="roomType" required>
+                <option value="" disabled selected>Select Room Type</option>
+                <option value="single">Single</option>
+                <option value="double">Double</option>
+            </select>
+
+            <label for="acPreference">AC Preference:</label>
+            <select id="acPreference" name="acPreference" required>
+                <option value="" disabled selected>Select AC Preference</option>
+                <option value="AC">AC</option>
+                <option value="NON-AC">NON-AC</option>
+            </select>
+            
+            <label for="checkInDate">Check-in Date:</label>
+            <input type="date" id="checkInDate" name="checkInDate" required>
+            
+            <label for="checkOutDate">Check-out Date:</label>
+            <input type="date" id="checkOutDate" name="checkOutDate" required>
+        </form>
+
+      <a href="payment.html" class="book-and-pay">Book and Pay</a>
+    </div>
+
+    <script>
+        // Function to calculate total amount based on default values
+        function calculateDefaultTotalAmount() {
+            const roomType = document.getElementById("roomType").value;
+            const acPreference = document.getElementById("acPreference").value;
+            const checkInDate = new Date(document.getElementById("checkInDate").value);
+            const checkOutDate = new Date(document.getElementById("checkOutDate").value);
+            const numDays = Math.ceil((checkOutDate - checkInDate) / (1000 * 60 * 60 * 24));
+            let pricePerDay = 0;
+            
+            // Determine default price per day based on room type and AC preference
+            if (roomType === "double" && acPreference === "AC") {
+                pricePerDay = 1000; // INR 1000 for double room with AC
+            } else if (roomType === "double" && acPreference === "NON-AC") {
+                pricePerDay = 8000; // INR 8000 for double room without AC
+            } else {
+                // Add default pricing logic for other room types and preferences here
+                // For now, assuming a default price of 500 for all other cases
+                pricePerDay = 500;
+            }
+
+            const totalAmount = pricePerDay * numDays;
+
+            // Update total amount field
+            document.getElementById("totalAmount").value = totalAmount;
+        }
+
+        // Calculate default total amount when the page loads
+        window.onload = calculateDefaultTotalAmount;
+    </script>
+</body>
+</html>
